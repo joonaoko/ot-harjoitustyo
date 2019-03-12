@@ -1,3 +1,0 @@
-### Ohjelmistotekniikka Harjoitustyö
-
-**Lorem** *ipsum*
