@@ -1,0 +1,113 @@
+commit 395114079b778845104bd5768aa90257ad4289ef
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:58:52 2019 +0200
+
+    file1 poistettu, file2 nimetty file22:ksi
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 51b1e9c43cac6f215129b63b7f38a630220ef2a2
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:55:39 2019 +0200
+
+    tiedostoja-hakemisto lisätty ja sinne file1, 2, 3
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 5d429d53ac97fe4e2ffec6c230e73e6a919765f8
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:49:06 2019 +0200
+
+    eka ja kolmas muokattu
+
+ eka.txt    | 4 ++--
+ kolmas.txt | 4 +++-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+commit 7ab5ebe0ebca795f22984d35aa0bd6d4cac91142
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:46:47 2019 +0200
+
+    tiedosto nimetty uudelleen ekaksi
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c63b1ae8ba9e38454a1ece5cb689f774c65c50ce
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:45:03 2019 +0200
+
+    toinen poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 44157de1387b866347aaa4d43545492addf5b335
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:43:15 2019 +0200
+
+    tiedosto.txt muokattu
+
+ tiedosto.txt | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+commit b22f7081e364cd9078d6f07e079d73c10f68cc18
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:41:01 2019 +0200
+
+    Kopioi tiedostoon tiedosto.txt jostain paljon tekstiä ja commitoi tiedosto
+
+ tiedosto.txt | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+commit 033963dc887fb54de022bec4986e824db0a1c45c
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:32:07 2019 +0200
+
+    stuff-hakemisto luotu ja jokin lisätty sinne
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 182acc730c70b07b023dca7b1f20286ce8e68abb
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:30:27 2019 +0200
+
+    toista ja kolmatta muokattu
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 7f263d43d6d12a81c3a19d7c10d2db7353fce496
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:29:31 2019 +0200
+
+    kolmas lisätty
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 54442fc6fb3d9c25aebc1f0f7a65f9d090832328
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:27:02 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 688478a964e97b2e23ab9d53fd3e16755d36ae4d
+Author: joonaoko <joonaoko@users.noreply.github.com>
+Date:   Tue Mar 12 13:21:23 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
