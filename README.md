@@ -1,5 +1,7 @@
 # Ohjelmistotekniikka, Harjoitustyö
 
+[Vaatimusmäärittely](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.MD)
+
 ## Tehtävät
 ### Viikko 1:
 
@@ -7,4 +9,6 @@
 
 [gitlog.txt](https://github.com/joonaoko/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
-**Lorem** *ipsum*
+### Viikko 2:
+
+[Unicafe-testikattavuus.png](https://github.com/joonaoko/ot-harjoitustyo/blob/master/laskarit/viikko2/Unicafe-testikattavuus.png)
