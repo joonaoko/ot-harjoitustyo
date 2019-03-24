@@ -5,7 +5,7 @@ Sovelluksella voi selata valokuvia tagien perusteella, ja lisäksi käyttäjä v
 
 
 ## Käyttäjäroolit:
-Käyttäjärooleja ovat "käyttäjä" ja "admin". Käyttäjät voivat selata ja lisätä kuvia, sekä tagata kuviaan valitsemalla olemassaolevista tageista sopivan. Admin voi lisäksi luoda uusia tageja.
+Käyttäjärooleja ovat "käyttäjä" ja "admin". Käyttäjät voivat selata ja lisätä kuvia, sekä tagata kuviaan valitsemalla olemassaolevista tageista sopivia. Admin voi lisäksi luoda uusia tageja.
 
 
 ## Perusversion toiminnallisuudet:
@@ -16,8 +16,9 @@ Käyttäjärooleja ovat "käyttäjä" ja "admin". Käyttäjät voivat selata ja 
 - Käyttäjä voi selata kuvia tagien perusteella
 <br>
 
-- Admin voi luoda uusia tageja
+- Admin voi luoda uusia tageja, sekä poistaa niitä
 - Admin voi poistaa käyttäjien kuvia
+- Admin voi muokata käyttäjien kuvien tageja
 
 
 ## Jatkokehitys:
