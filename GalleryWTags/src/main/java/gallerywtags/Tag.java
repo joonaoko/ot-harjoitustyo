@@ -9,10 +9,15 @@ public class Tag {
         this.name = name;
     }
     
+    public Tag(String name) {
+        this.name = name;
+    }
+    
     public int getId() {
         return this.id;
     }
     
+    @Override
     public String toString() {
         return this.name;
     }
