@@ -6,12 +6,12 @@ public class Image {
     private int id;
     private String title;
     private ArrayList<Tag> tags;
-    
+    /*
     public Image(int id) {
         this.id = id;
         this.tags = new ArrayList<>();
     }
-    
+    */
     public Image(String title) {
         this.title = title;
         this.tags = new ArrayList<>();
@@ -29,13 +29,15 @@ public class Image {
         tags.remove(id);
     }
     
+    public int getId() {
+        return this.id;
+    }
+    
     public String getTags() {
         String tagsString = "";
-        int i = 0;
         
         for (Tag t : tags) {
-            tagsString += i+": "+t+", ";
-            i++;
+            tagsString += t+", ";
         }
         
         return tagsString;
