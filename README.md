@@ -15,3 +15,7 @@ Sovelluksella voi selata valokuvia niille asetettujen tagien perusteella, ja lis
 Testit voidaan suorittaa komennolla `mvn test`
 
 Testikattavuusraportti voidaan generoida komennolla `mvn jacoco:report`
+
+### Checkstyle
+
+Checkstyle-tarkistus voidaan suorittaa komennolla `mvn jxr:jxr checkstyle:checkstyle`
