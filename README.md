@@ -8,6 +8,8 @@ Sovelluksella voi selata valokuvia niille asetettujen tagien perusteella, ja lis
 
 [Työaikakirjanpito](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.MD)
 
+[Arkkitehtuuri](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
+
 ## Komentorivitoiminnot
 
 ### Testit
