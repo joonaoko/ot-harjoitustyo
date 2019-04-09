@@ -129,6 +129,8 @@ public class UI extends Application {
     
     private Scene createImageView(Stage window, Image img) {
         BorderPane imgViewLayout = new BorderPane();
+        imgViewLayout.setTop(createTopUI(window)); 
+        // Jostain syystä ei toimi topUI-muuttujalla
         
         VBox imgVBox = new VBox();
         Canvas imgPlaceholder = new Canvas(300, 500);
@@ -142,14 +144,12 @@ public class UI extends Application {
         
         Button editTagsButton = new Button("Edit Tags");
         editTagsButton.setOnAction((event) -> {
-           window.setScene(createGalleryView(window));
+           window.setScene(createEditImgTagsView(window, img));
            window.show();
         });
         
-        // imgVBox.getChildren().add();
+        imgVBox.getChildren().add(editTagsButton);
         
-        imgViewLayout.setTop(topUI); 
-// Ei toimi kun kun createImageView kutsutaan button eventin ulkopuolella
         imgViewLayout.setCenter(imgVBox);
         
         Scene imgViewScene = new Scene(imgViewLayout);
@@ -160,6 +160,41 @@ public class UI extends Application {
     private Scene createEditImgTagsView(Stage window, Image img) {
         BorderPane editTagsLayout = new BorderPane();
         editTagsLayout.setTop(topUI);
+        
+        VBox editTagsVBox = new VBox();
+        
+        for (int i = 0; i < img.getTagsList().size(); i++) {
+            HBox tagHBox = new HBox();
+            tagHBox.getChildren().add(new Label(img.getTagsList().get(i).toString()));
+            
+            Button removeTagButton = new Button("Remove");
+            removeTagButton.setOnAction((event) -> {
+                // Tagin poisto ei toimi vielä
+                window.setScene(createEditImgTagsView(window, img));
+                window.show();
+            });
+            tagHBox.getChildren().add(removeTagButton);
+            
+            editTagsVBox.getChildren().add(tagHBox);
+        }
+        
+        HBox newTagHBox = new HBox();
+        
+        TextField newTagField = new TextField();
+        
+        Button newTagButton = new Button("Add New Tag");
+        newTagButton.setOnAction((event) -> {
+           img.addTag(new Tag(newTagField.getText()));
+           window.setScene(createEditImgTagsView(window, img));
+           window.show();
+        });
+        
+        newTagHBox.getChildren().add(newTagField);
+        newTagHBox.getChildren().add(newTagButton);
+        
+        editTagsVBox.getChildren().add(newTagHBox);
+        
+        editTagsLayout.setCenter(editTagsVBox);
         
         Scene editTagsScene = new Scene(editTagsLayout);
         
@@ -203,6 +238,35 @@ public class UI extends Application {
         Scene uploadScene = new Scene(uploadLayout);
         
         return uploadScene;
+    }
+    
+    public HBox createTopUI(Stage window) {
+        HBox topUIHbox = new HBox();
+        
+        Button topUIImagesButton = new Button("All Images");
+        topUIImagesButton.setOnAction((event) -> {
+                    window.setScene(createGalleryView(window));
+                    window.show();
+                });
+        topUIHbox.getChildren().add(topUIImagesButton);
+        
+        Button tagsButton = new Button("Tags");
+        tagsButton.setOnAction((event) -> {
+           window.setScene(createTagsView(window));
+           window.show();
+        });
+        topUIHbox.getChildren().add(tagsButton);
+        
+        Button uploadButton = new Button("Upload");
+        uploadButton.setOnAction((event) -> {
+           window.setScene(createUploadView(window));
+           window.show();
+        });
+        topUIHbox.getChildren().add(uploadButton);
+        
+        topUIHbox.setSpacing(5);
+        
+        return topUIHbox;
     }
     
     public static void main(String[] args) {

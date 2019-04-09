@@ -43,6 +43,10 @@ public class Image {
         return tagsString;
     }
     
+    public ArrayList getTagsList() {
+        return tags;
+    }
+    
     public String getTitle() {
         return this.title;
     }
