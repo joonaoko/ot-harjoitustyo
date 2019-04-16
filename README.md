@@ -10,6 +10,10 @@ Sovelluksella voi selata valokuvia niille asetettujen tagien perusteella, ja lis
 
 [Arkkitehtuuri](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
+## Releaset
+
+[Viikko 5](https://github.com/joonaoko/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Komentorivitoiminnot
 
 ### Testit
@@ -17,6 +21,10 @@ Sovelluksella voi selata valokuvia niille asetettujen tagien perusteella, ja lis
 Testit voidaan suorittaa komennolla `mvn test`
 
 Testikattavuusraportti voidaan generoida komennolla `mvn jacoco:report`
+
+### Suoritettava .jar
+
+Komennolla `mvn package` voidaan generoida suoritettava `GalleryWTags-1.0-SNAPSHOT.jar`-niminen tiedosto target-hakemistoon
 
 ### Checkstyle
 
