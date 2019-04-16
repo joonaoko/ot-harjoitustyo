@@ -1,10 +1,11 @@
-package gallerywtags;
+package domain;
 
 import java.util.ArrayList;
 
-public class Image {
+public class Img {
     private int id;
     private String title;
+    private String path;
     private ArrayList<Tag> tags;
     /*
     public Image(int id) {
@@ -12,8 +13,15 @@ public class Image {
         this.tags = new ArrayList<>();
     }
     */
-    public Image(String title) {
+    public Img(String title) {
         this.title = title;
+        this.path = "images/notfound.jpg";
+        this.tags = new ArrayList<>();
+    }
+    
+    public Img(String title, String path) {
+        this.title = title;
+        this.path = path;
         this.tags = new ArrayList<>();
     }
     
@@ -31,6 +39,10 @@ public class Image {
     
     public int getId() {
         return this.id;
+    }
+    
+    public String getPath() {
+        return path;
     }
     
     public String getTags() {

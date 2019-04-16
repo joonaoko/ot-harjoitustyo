@@ -1,7 +1,8 @@
 package ui;
 
-import gallerywtags.Image;
-import gallerywtags.Tag;
+import domain.Img;
+import domain.ImgService;
+import domain.Tag;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -21,21 +22,16 @@ import javafx.stage.Stage;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UI extends Application {
     HBox topUI;
-    ArrayList<Image> images;
+    ImgService imgService;
 
     @Override
     public void start(Stage window) {
-        /* Temp stuff */
-        images = new ArrayList<>();
-        images.add(new Image("Test"));
-        images.add(new Image("Test2"));
-        images.get(0).addTag(new Tag("Test Tag"));
-        images.get(0).addTag(new Tag("Test Tag 2"));
-        
-        
+        imgService = new ImgService();
         
         window.setTitle("GalleryWTags");
         
@@ -85,19 +81,24 @@ public class UI extends Application {
             for (int j = 0; j < 5; j++) {
                 VBox thisThumb = new VBox();
                 
-                Canvas thumbPlaceholder = new Canvas(280, 320);
-                GraphicsContext placeholderGC = thumbPlaceholder.getGraphicsContext2D();
-                placeholderGC.setFill(Color.LIGHTBLUE);
-                placeholderGC.fillRect(10, 10, 260, 300);
+                Img currentImage = new Img("Test");
                 
-                thisThumb.getChildren().add(thumbPlaceholder);
-                
-                Image currentImage = new Image("Test");
-                
-                if (k < images.size()) {
-                    currentImage = images.get(k);
+                if (k < imgService.getImages().size()) {
+                    currentImage = imgService.getImage(k);
+                    
+                    // Kuvatiedosto
+                    Image imgfile = new Image("file:"+currentImage.getPath());
+                    ImageView image = new ImageView(imgfile);
+                    thisThumb.getChildren().add(image);
+                    
                     thisThumb.getChildren().add(new Label(currentImage.getTitle()));
                 } else {
+                    Canvas thumbPlaceholder = new Canvas(280, 320);
+                    GraphicsContext placeholderGC = thumbPlaceholder.getGraphicsContext2D();
+                    placeholderGC.setFill(Color.LIGHTBLUE);
+                    placeholderGC.fillRect(10, 10, 260, 300);
+                    thisThumb.getChildren().add(thumbPlaceholder);
+                    
                     thisThumb.getChildren().add(new Label("Test "+i+", "+j));
                 }
                 k++;
@@ -127,7 +128,7 @@ public class UI extends Application {
         return galleryScene;
     }
     
-    private Scene createImageView(Stage window, Image img) {
+    private Scene createImageView(Stage window, Img img) {
         BorderPane imgViewLayout = new BorderPane();
         imgViewLayout.setTop(createTopUI(window)); 
         // Jostain syystä ei toimi topUI-muuttujalla
@@ -138,7 +139,12 @@ public class UI extends Application {
         imgGC.setFill(Color.LIGHTBLUE);
         imgGC.fillRect(0, 0, 300, 500);
         
-        imgVBox.getChildren().add(imgPlaceholder);
+        // Kuvatiedosto
+        Image imgfile = new Image("file:"+img.getPath());
+        ImageView image = new ImageView(imgfile);
+        
+        
+        imgVBox.getChildren().add(image);
         imgVBox.getChildren().add(new Label(img.getTitle()));
         imgVBox.getChildren().add(new Label(img.getTags()));
         
@@ -157,7 +163,7 @@ public class UI extends Application {
         return imgViewScene;
     }
     
-    private Scene createEditImgTagsView(Stage window, Image img) {
+    private Scene createEditImgTagsView(Stage window, Img img) {
         BorderPane editTagsLayout = new BorderPane();
         editTagsLayout.setTop(topUI);
         
@@ -223,7 +229,7 @@ public class UI extends Application {
         
         Button uploadButton = new Button("Upload");
         uploadButton.setOnAction((event) -> {
-           images.add(new Image(titleField.getText()));
+           imgService.addImage(titleField.getText());
            window.setScene(createGalleryView(window));
            window.show();
         });
