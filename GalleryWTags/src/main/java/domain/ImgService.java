@@ -24,4 +24,8 @@ public class ImgService {
     public void addImage(String title) {
         images.add(new Img(title));
     }
+    
+    public void addImage(String title, String path) {
+        images.add(new Img(title, path));
+    }
 }

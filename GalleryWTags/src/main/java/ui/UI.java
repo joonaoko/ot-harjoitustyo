@@ -3,6 +3,7 @@ package ui;
 import domain.Img;
 import domain.ImgService;
 import domain.Tag;
+import java.io.File;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -24,6 +25,7 @@ import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 public class UI extends Application {
     HBox topUI;
@@ -89,6 +91,9 @@ public class UI extends Application {
                     // Kuvatiedosto
                     Image imgfile = new Image("file:"+currentImage.getPath());
                     ImageView image = new ImageView(imgfile);
+                    System.out.println(image.getFitHeight()+" "+image.getFitWidth());
+                    image.setFitHeight(320);
+                    image.setFitWidth(280);
                     thisThumb.getChildren().add(image);
                     
                     thisThumb.getChildren().add(new Label(currentImage.getTitle()));
@@ -227,13 +232,24 @@ public class UI extends Application {
         TextField titleField = new TextField();
         uploadForm.add(titleField, 1, 0);
         
+        // Kuvan valitsin
+        
+        FileChooser fileChooser = new FileChooser();
+        Button selectImgButton = new Button("Choose Image...");
+        selectImgButton.setOnAction((event) -> {
+           File file = fileChooser.showOpenDialog(window);
+           // System.out.println(file.getAbsolutePath());
+           imgService.addImage(titleField.getText(), file.getAbsolutePath());
+        });
+        uploadForm.add(selectImgButton, 0, 2);
+        
         Button uploadButton = new Button("Upload");
         uploadButton.setOnAction((event) -> {
-           imgService.addImage(titleField.getText());
+           
            window.setScene(createGalleryView(window));
            window.show();
         });
-        uploadForm.add(uploadButton, 0, 2);
+        uploadForm.add(uploadButton, 1, 2);
         
         uploadForm.setHgap(10);
         uploadForm.setVgap(10);
