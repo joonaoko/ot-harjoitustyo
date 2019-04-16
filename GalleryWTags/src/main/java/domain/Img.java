@@ -49,7 +49,7 @@ public class Img {
         String tagsString = "";
         
         for (Tag t : tags) {
-            tagsString += t+", ";
+            tagsString += t + ", ";
         }
         
         return tagsString;
@@ -65,6 +65,6 @@ public class Img {
     
     @Override
     public String toString() {
-        return title+"\n"+tags;
+        return title + "\n" + tags;
     }
 }
