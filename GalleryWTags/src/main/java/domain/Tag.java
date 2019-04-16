@@ -1,4 +1,4 @@
-package gallerywtags;
+package domain;
 
 public class Tag {
     private int id;

@@ -1,6 +1,6 @@
 
-import gallerywtags.Image;
-import gallerywtags.Tag;
+import domain.Img;
+import domain.Tag;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

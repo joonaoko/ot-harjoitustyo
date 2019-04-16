@@ -28,7 +28,7 @@
                 <configuration>
                     <excludes>
                         <exclude>ui/*</exclude>
-                        <exclude>gallerywtags/Main.class</exclude>
+                        <exclude>domain/Main.class</exclude>
                     </excludes>
                 </configuration> 
                 <executions>

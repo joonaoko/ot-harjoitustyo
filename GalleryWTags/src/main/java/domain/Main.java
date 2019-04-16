@@ -1,4 +1,4 @@
-package gallerywtags;
+package domain;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Image> images = new ArrayList<>();
+        ArrayList<Img> images = new ArrayList<>();
         ArrayList<Tag> tags = new ArrayList<>();
         Scanner s = new Scanner(System.in);
         
-        images.add(new Image("Test1"));
-        images.add(new Image("Test2"));
+        images.add(new Img("Test1"));
+        images.add(new Img("Test2"));
         
         while (true) {
             System.out.println("\nChoose action: \n"
@@ -28,7 +28,7 @@ public class Main {
                 System.out.print("Image Title: ");
                 i = s.nextLine();
                 
-                Image currentImage = new Image(i);
+                Img currentImage = new Img(i);
                 images.add(currentImage);
                 
             } else if (i.equals("2")) {
@@ -38,7 +38,7 @@ public class Main {
                 System.out.print("\nChoose Image: ");
                 
                 i = s.nextLine();
-                Image currentImage = images.get(Integer.parseInt(i));
+                Img currentImage = images.get(Integer.parseInt(i));
                 
                 while (true) {
                     System.out.println("\nChoose action: \n"
@@ -71,7 +71,7 @@ public class Main {
                 
             } else if (i.equals("4")) {
                 System.out.println();
-                for (Image img : images) {
+                for (Img img : images) {
                     System.out.println(img);
                 }
                 

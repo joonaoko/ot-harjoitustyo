@@ -1,6 +1,6 @@
 
-import gallerywtags.Image;
-import gallerywtags.Tag;
+import domain.Img;
+import domain.Tag;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,13 +8,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ImageTest {
+public class ImgTest {
     
-    Image img;
+    Img img;
     
     @Before
     public void setUp() {
-        img = new Image("Test");
+        img = new Img("Test");
     }
     
     @After
