@@ -91,7 +91,6 @@ public class UI extends Application {
                     // Kuvatiedosto
                     Image imgfile = new Image("file:"+currentImage.getPath());
                     ImageView image = new ImageView(imgfile);
-                    System.out.println(image.getFitHeight()+" "+image.getFitWidth());
                     image.setFitHeight(320);
                     image.setFitWidth(280);
                     thisThumb.getChildren().add(image);
