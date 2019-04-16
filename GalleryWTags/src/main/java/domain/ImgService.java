@@ -7,7 +7,7 @@ public class ImgService {
     
     public ImgService() {
         images = new ArrayList<>();
-        images.add(new Img("Test", "images/testimg.jpg"));
+        images.add(new Img("Test", "src/main/resources/images/testimg.jpg"));
         images.add(new Img("Test2"));
         images.get(0).addTag(new Tag("Test Tag"));
         images.get(0).addTag(new Tag("Test Tag 2"));

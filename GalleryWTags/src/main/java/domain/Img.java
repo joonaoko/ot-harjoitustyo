@@ -15,7 +15,7 @@ public class Img {
     */
     public Img(String title) {
         this.title = title;
-        this.path = "images/notfound.jpg";
+        this.path = "src/main/resources/images/notfound.jpg";
         this.tags = new ArrayList<>();
     }
     
