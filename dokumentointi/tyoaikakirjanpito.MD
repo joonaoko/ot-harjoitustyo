@@ -22,4 +22,5 @@
 |20.4|2h  |Kuvan tagien listaus, kaikkien tagien listaus                |
 |21.4|2h  |Kuvan tagien poistaminen, yksittäisen tagin omaavien kuvien näyttäminen|
 |22.4|1h  |Turhaksi jääneiden metodien jne. poistoa                     |
-|**Yht**:|**32h** |                                                     |
+|22.4|1h  |Poistettu turhaksi jääneitä metodeja ja testejä, päivitetty tietokanta toimimaan myös .jar:n kautta suorittaessa|
+|**Yht**:|**33h** |                                                     |
