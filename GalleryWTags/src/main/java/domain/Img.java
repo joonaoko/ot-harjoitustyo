@@ -68,17 +68,18 @@ public class Img {
         
         return tagsString;
     }
-    
+    /*
     public List getTagsList() {
         return tags;
     }
-    
+    */
     public String getTitle() {
         return this.title;
     }
-    
+    /*
     @Override
     public String toString() {
         return title + "\n" + tags;
     }
+    */
 }

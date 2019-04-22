@@ -15,7 +15,7 @@ public class ImgServiceTest {
     ImgService imgService;
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         imgService = new ImgService();
     }
     
@@ -24,7 +24,7 @@ public class ImgServiceTest {
     }
     
     @Test
-    public void getImageWithIdReturnsCorrectImage() {
-        assertEquals("Test", imgService.getImage(0).getTitle());
+    public void getImageWithIdReturnsCorrectImage() throws Exception {
+        assertEquals("Test", imgService.getImage(1).getTitle());
     }
 }
