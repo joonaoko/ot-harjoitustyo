@@ -1,12 +1,12 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Img {
     private int id;
     private String title;
     private String path;
-    private ArrayList<Tag> tags;
+    private List<Tag> tags;
     /*
     public Image(int id) {
         this.id = id;
@@ -25,6 +25,20 @@ public class Img {
         this.tags = new ArrayList<>();
     }
     
+    public Img(int id, String title, String path) {
+        this.id = id;
+        this.title = title;
+        this.path = path;
+        this.tags = new ArrayList<>();
+    }
+    
+    public Img(int id, String title, String path, List tags) {
+        this. id = id;
+        this.title = title;
+        this.path = path;
+        this.tags = tags;
+    }
+    /*
     public void setId(int id) {
         this.id = id;
     }
@@ -36,7 +50,7 @@ public class Img {
     public void removeTag(int id) {
         tags.remove(id);
     }
-    
+    */
     public int getId() {
         return this.id;
     }
@@ -45,7 +59,7 @@ public class Img {
         return path;
     }
     
-    public String getTags() {
+    public String getTagsString() {
         String tagsString = "";
         
         for (Tag t : tags) {
@@ -55,7 +69,7 @@ public class Img {
         return tagsString;
     }
     
-    public ArrayList getTagsList() {
+    public List getTagsList() {
         return tags;
     }
     
