@@ -10,7 +10,7 @@ public class ImgService {
     private ImgDao imgDao;
     
     public ImgService() throws Exception {  
-        Database db = new Database("jdbc:sqlite:src/main/resources/database.db");
+        Database db = new Database("jdbc:sqlite::resource:database.db");
         db.init();
         imgDao = new ImgDao(db);
         

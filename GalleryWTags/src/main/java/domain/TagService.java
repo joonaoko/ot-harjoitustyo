@@ -9,7 +9,7 @@ public class TagService {
     private TagDao tagDao;
     
     public TagService() throws Exception {
-        Database db = new Database("jdbc:sqlite:src/main/resources/database.db");
+        Database db = new Database("jdbc:sqlite::resource:database.db");
         db.init();
         tagDao = new TagDao(db);
     }
