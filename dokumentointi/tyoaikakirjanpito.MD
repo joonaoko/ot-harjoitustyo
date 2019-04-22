@@ -17,4 +17,9 @@
 |16.4|1h  |Img- ja ImgService-luokkien testejä, korjattu Img-luokan muotovirheitä |
 |16.4|1h  |Open Image -toiminnallisuutta kuvaava sekvenssikaavio, täydennetty luokka/pakkauskaavio |
 |16.4|1h  |Pikkukorjauksia, .jar:n generointi sekä releasen luonti (ja luomisohje), lisätty ensimmäinen release |
-|**Yht**:|**22h** |                                                     |
+|19.4|3h  |Tietokannan aloitus (taulut, kuvien haku ja lisäys); Database-, Dao- ja ImgDao-luokat; UI:n gallerianäkymä päivitetty|
+|19.4|2h  |Kuvien poistaminen, TagDao (tagien haku ja lisäys), kuvan tagin lisäys|
+|20.4|2h  |Kuvan tagien listaus, kaikkien tagien listaus                |
+|21.4|2h  |Kuvan tagien poistaminen, yksittäisen tagin omaavien kuvien näyttäminen|
+|22.4|1h  |Turhaksi jääneiden metodien jne. poistoa                     |
+|**Yht**:|**32h** |                                                     |
