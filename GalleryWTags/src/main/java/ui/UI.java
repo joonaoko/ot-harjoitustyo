@@ -3,8 +3,10 @@ package ui;
 import domain.Img;
 import domain.ImgService;
 import domain.Tag;
+import domain.TagService;
 import java.io.File;
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.*;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -30,10 +32,12 @@ import javafx.stage.FileChooser;
 public class UI extends Application {
     HBox topUI;
     ImgService imgService;
+    TagService tagService;
 
     @Override
-    public void start(Stage window) {
+    public void start(Stage window) throws Exception {
         imgService = new ImgService();
+        tagService = new TagService();
         
         window.setTitle("GalleryWTags");
         
@@ -45,21 +49,33 @@ public class UI extends Application {
         
         Button topUIImagesButton = new Button("All Images");
         topUIImagesButton.setOnAction((event) -> {
-                    window.setScene(createGalleryView(window));
-                    window.show();
-                });
+            try {
+                window.setScene(createGalleryView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            } 
+            window.show();
+        });
         topUI.getChildren().add(topUIImagesButton);
         
         Button tagsButton = new Button("Tags");
         tagsButton.setOnAction((event) -> {
-           window.setScene(createTagsView(window));
+            try {
+                window.setScene(createTagsView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
            window.show();
         });
         topUI.getChildren().add(tagsButton);
         
-        Button uploadButton = new Button("Upload");
+        Button uploadButton = new Button("Add Image");
         uploadButton.setOnAction((event) -> {
-           window.setScene(createUploadView(window));
+            try {
+                window.setScene(createUploadView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
            window.show();
         });
         topUI.getChildren().add(uploadButton);
@@ -71,54 +87,52 @@ public class UI extends Application {
         window.show();
     }
     
-    private Scene createGalleryView(Stage window) {
+    private Scene createGalleryView(Stage window) throws Exception {
         BorderPane galleryLayout = new BorderPane();
         
         GridPane thumbs = new GridPane();
         
         /* Individual thumbnail boxes */
-        int k = 0;
+        List<Img> allImages = imgService.getImages();
+        int row = 0;
+        int col = 0;
         
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 5; j++) {
-                VBox thisThumb = new VBox();
-                
-                Img currentImage = new Img("Test");
-                
-                if (k < imgService.getImages().size()) {
-                    currentImage = imgService.getImage(k);
-                    
-                    // Kuvatiedosto
-                    Image imgfile = new Image("file:"+currentImage.getPath());
-                    ImageView image = new ImageView(imgfile);
-                    image.setFitHeight(320);
-                    image.setFitWidth(280);
-                    thisThumb.getChildren().add(image);
-                    
-                    thisThumb.getChildren().add(new Label(currentImage.getTitle()));
-                } else {
-                    Canvas thumbPlaceholder = new Canvas(280, 320);
-                    GraphicsContext placeholderGC = thumbPlaceholder.getGraphicsContext2D();
-                    placeholderGC.setFill(Color.LIGHTBLUE);
-                    placeholderGC.fillRect(10, 10, 260, 300);
-                    thisThumb.getChildren().add(thumbPlaceholder);
-                    
-                    thisThumb.getChildren().add(new Label("Test "+i+", "+j));
-                }
-                k++;
-                
-                Scene currentImageView = createImageView(window, currentImage);
-                
-                Button imgButton = new Button("Open");
-                
-                imgButton.setOnAction((event) -> {
-                    window.setScene(currentImageView);
-                    window.show();
-                });
-                thisThumb.getChildren().add(imgButton);
-                
-                thumbs.add(thisThumb, j, i);
+        for (Img currentImg : allImages) {
+            VBox thisThumb = new VBox();
+            
+            if (col >= 5) {
+                row++;
+                col = 0;
             }
+            
+            Image imgfile = new Image("file:"+currentImg.getPath());
+            ImageView image = new ImageView(imgfile);
+            
+            /* Resize image for thumbnail */
+            image.setPreserveRatio(true);
+            double height = imgfile.getHeight();
+            double width = imgfile.getWidth();
+            
+            if (height >= width+40) {
+                if (height > 320) image.setFitHeight(320);
+            } else {
+                if (width > 280) image.setFitWidth(280);
+            }
+            
+            thisThumb.getChildren().add(image);
+            thisThumb.getChildren().add(new Label(currentImg.getTitle()));
+            Scene currentImageView = createImageView(window, currentImg);
+            Button imgButton = new Button("Open");
+
+            imgButton.setOnAction((event) -> {
+                window.setScene(currentImageView);
+                window.show();
+            });
+            thisThumb.getChildren().add(imgButton);
+
+            thumbs.add(thisThumb, col, row);
+            
+            col++;
         }
         
         thumbs.setHgap(10);
@@ -132,7 +146,72 @@ public class UI extends Application {
         return galleryScene;
     }
     
-    private Scene createImageView(Stage window, Img img) {
+    private Scene createTagGalleryView(Stage window, int tag_id) throws Exception {
+        BorderPane galleryLayout = new BorderPane();
+        
+        GridPane thumbs = new GridPane();
+        
+        /* Individual thumbnail boxes */
+        List<Img> allImages = imgService.getTagImages(tag_id);
+        
+        if (!allImages.isEmpty()) {
+            // ********* Kuvattomien tagien käsittely ei toimi vielä ***********
+            galleryLayout.setCenter(new Label("No images with this tag"));
+        }
+        
+        int row = 0;
+        int col = 0;
+        
+        for (Img currentImg : allImages) {
+            VBox thisThumb = new VBox();
+            
+            if (col >= 5) {
+                row++;
+                col = 0;
+            }
+            
+            Image imgfile = new Image("file:"+currentImg.getPath());
+            ImageView image = new ImageView(imgfile);
+            
+            /* Resize image for thumbnail */
+            image.setPreserveRatio(true);
+            double height = imgfile.getHeight();
+            double width = imgfile.getWidth();
+            
+            if (height >= width+40) {
+                if (height > 320) image.setFitHeight(320);
+            } else {
+                if (width > 280) image.setFitWidth(280);
+            }
+            
+            thisThumb.getChildren().add(image);
+            thisThumb.getChildren().add(new Label(currentImg.getTitle()));
+            Scene currentImageView = createImageView(window, currentImg);
+            Button imgButton = new Button("Open");
+
+            imgButton.setOnAction((event) -> {
+                window.setScene(currentImageView);
+                window.show();
+            });
+            thisThumb.getChildren().add(imgButton);
+
+            thumbs.add(thisThumb, col, row);
+            
+            col++;
+        }
+        
+        thumbs.setHgap(10);
+        thumbs.setVgap(10);
+        
+        galleryLayout.setTop(createTopUI(window));
+        galleryLayout.setCenter(thumbs);
+        
+        Scene galleryScene = new Scene(galleryLayout);
+        
+        return galleryScene;
+    }
+    
+    private Scene createImageView(Stage window, Img img) throws Exception {
         BorderPane imgViewLayout = new BorderPane();
         imgViewLayout.setTop(createTopUI(window)); 
         // Jostain syystä ei toimi topUI-muuttujalla
@@ -143,22 +222,38 @@ public class UI extends Application {
         imgGC.setFill(Color.LIGHTBLUE);
         imgGC.fillRect(0, 0, 300, 500);
         
-        // Kuvatiedosto
+        /* Get image file from path */
         Image imgfile = new Image("file:"+img.getPath());
         ImageView image = new ImageView(imgfile);
         
         
         imgVBox.getChildren().add(image);
         imgVBox.getChildren().add(new Label(img.getTitle()));
-        imgVBox.getChildren().add(new Label(img.getTags()));
+        imgVBox.getChildren().add(new Label(img.getTagsString()));
         
+        /* Edit tags button */
         Button editTagsButton = new Button("Edit Tags");
         editTagsButton.setOnAction((event) -> {
-           window.setScene(createEditImgTagsView(window, img));
-           window.show();
+            try {
+                window.setScene(createEditImgTagsView(window, img));
+                window.show();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         });
-        
         imgVBox.getChildren().add(editTagsButton);
+        
+        /* Remove image button */
+        Button removeImgButton = new Button("Remove Image");
+        removeImgButton.setOnAction((event) -> {
+            try {
+                imgService.removeImage(img.getId());
+                window.setScene(createGalleryView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
+        imgVBox.getChildren().add(removeImgButton);
         
         imgViewLayout.setCenter(imgVBox);
         
@@ -167,20 +262,25 @@ public class UI extends Application {
         return imgViewScene;
     }
     
-    private Scene createEditImgTagsView(Stage window, Img img) {
+    private Scene createEditImgTagsView(Stage window, Img img) throws Exception {
         BorderPane editTagsLayout = new BorderPane();
-        editTagsLayout.setTop(topUI);
         
         VBox editTagsVBox = new VBox();
         
-        for (int i = 0; i < img.getTagsList().size(); i++) {
+        List<Tag> allTags = imgService.getImageTags(img.getId());
+        
+        for (Tag tag : allTags) {
             HBox tagHBox = new HBox();
-            tagHBox.getChildren().add(new Label(img.getTagsList().get(i).toString()));
+            tagHBox.getChildren().add(new Label(tag.toString()));
             
             Button removeTagButton = new Button("Remove");
             removeTagButton.setOnAction((event) -> {
-                // Tagin poisto ei toimi vielä
-                window.setScene(createEditImgTagsView(window, img));
+                try {
+                    imgService.removeImageTag(img.getId(), tag.getId());
+                    window.setScene(createEditImgTagsView(window, img));
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
                 window.show();
             });
             tagHBox.getChildren().add(removeTagButton);
@@ -194,35 +294,55 @@ public class UI extends Application {
         
         Button newTagButton = new Button("Add New Tag");
         newTagButton.setOnAction((event) -> {
-           img.addTag(new Tag(newTagField.getText()));
-           window.setScene(createEditImgTagsView(window, img));
-           window.show();
+            try {
+                imgService.addImageTag(img.getId(), newTagField.getText());
+                window.setScene(createEditImgTagsView(window, img));
+                window.show();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         });
         
         newTagHBox.getChildren().add(newTagField);
         newTagHBox.getChildren().add(newTagButton);
         
         editTagsVBox.getChildren().add(newTagHBox);
-        
+        editTagsLayout.setTop(topUI);
         editTagsLayout.setCenter(editTagsVBox);
         
         Scene editTagsScene = new Scene(editTagsLayout);
-        
         return editTagsScene;
     }
     
-    private Scene createTagsView(Stage window) {
+    private Scene createTagsView(Stage window) throws Exception {
         BorderPane tagsLayout = new BorderPane();
-        tagsLayout.setTop(topUI);
+        tagsLayout.setTop(createTopUI(window));
         
-        tagsLayout.setCenter(new Label("Tags"));
+        List<Tag> allTags = tagService.getAllTags();
+        VBox tagsVBox = new VBox();
         
+        for (Tag t : allTags) {
+            HBox tagHBox = new HBox();
+            tagHBox.getChildren().add(new Label(t.toString()));
+            
+            Scene currentTagGalleryScene = createTagGalleryView(window, t.getId());
+            
+            Button openTagGalleryButton = new Button("Open");
+            openTagGalleryButton.setOnAction((event) -> {
+                window.setScene(currentTagGalleryScene);
+                window.show();
+            });
+            tagHBox.getChildren().add(openTagGalleryButton);
+            
+            tagsVBox.getChildren().add(tagHBox);
+        }
+        
+        tagsLayout.setCenter(tagsVBox);
         Scene tagsScene = new Scene(tagsLayout);
-        
         return tagsScene;
     }
     
-    private Scene createUploadView(Stage window) {
+    private Scene createUploadView(Stage window) throws Exception{
         BorderPane uploadLayout = new BorderPane();
         uploadLayout.setTop(topUI);
         
@@ -231,21 +351,26 @@ public class UI extends Application {
         TextField titleField = new TextField();
         uploadForm.add(titleField, 1, 0);
         
-        // Kuvan valitsin
-        
+        /* Image chooser */
         FileChooser fileChooser = new FileChooser();
         Button selectImgButton = new Button("Choose Image...");
         selectImgButton.setOnAction((event) -> {
            File file = fileChooser.showOpenDialog(window);
-           // System.out.println(file.getAbsolutePath());
-           imgService.addImage(titleField.getText(), file.getAbsolutePath());
+            try {
+                imgService.addImage(titleField.getText(), file.getAbsolutePath());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         });
         uploadForm.add(selectImgButton, 0, 2);
         
-        Button uploadButton = new Button("Upload");
+        Button uploadButton = new Button("Add Image");
         uploadButton.setOnAction((event) -> {
-           
-           window.setScene(createGalleryView(window));
+            try {
+                window.setScene(createGalleryView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
            window.show();
         });
         uploadForm.add(uploadButton, 1, 2);
@@ -257,7 +382,6 @@ public class UI extends Application {
         uploadLayout.setCenter(uploadForm);
         
         Scene uploadScene = new Scene(uploadLayout);
-        
         return uploadScene;
     }
     
@@ -266,21 +390,33 @@ public class UI extends Application {
         
         Button topUIImagesButton = new Button("All Images");
         topUIImagesButton.setOnAction((event) -> {
-                    window.setScene(createGalleryView(window));
-                    window.show();
-                });
+            try {
+                window.setScene(createGalleryView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+            window.show();
+            });
         topUIHbox.getChildren().add(topUIImagesButton);
         
         Button tagsButton = new Button("Tags");
         tagsButton.setOnAction((event) -> {
-           window.setScene(createTagsView(window));
+            try {
+                window.setScene(createTagsView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
            window.show();
         });
         topUIHbox.getChildren().add(tagsButton);
         
-        Button uploadButton = new Button("Upload");
+        Button uploadButton = new Button("Add Image");
         uploadButton.setOnAction((event) -> {
-           window.setScene(createUploadView(window));
+            try {
+                window.setScene(createUploadView(window));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
            window.show();
         });
         topUIHbox.getChildren().add(uploadButton);
