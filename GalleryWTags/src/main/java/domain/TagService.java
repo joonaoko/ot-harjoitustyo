@@ -14,7 +14,7 @@ public class TagService {
         tagDao = new TagDao(db);
     }
     
-    public List getAllTags() throws Exception {
+    public List<Tag> getAllTags() throws Exception {
         return tagDao.findAll();
     }
 }

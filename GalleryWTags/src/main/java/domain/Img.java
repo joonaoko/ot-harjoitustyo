@@ -12,26 +12,26 @@ public class Img {
         this.id = id;
         this.tags = new ArrayList<>();
     }
-    */
+    
     public Img(String title) {
         this.title = title;
         this.path = "src/main/resources/images/notfound.jpg";
         this.tags = new ArrayList<>();
     }
-    
+    */
     public Img(String title, String path) {
         this.title = title;
         this.path = path;
         this.tags = new ArrayList<>();
     }
-    
+    /*
     public Img(int id, String title, String path) {
         this.id = id;
         this.title = title;
         this.path = path;
         this.tags = new ArrayList<>();
     }
-    
+    */
     public Img(int id, String title, String path, List tags) {
         this. id = id;
         this.title = title;
