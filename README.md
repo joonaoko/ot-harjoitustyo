@@ -13,6 +13,7 @@ Sovelluksella voi selata valokuvia niille asetettujen tagien perusteella, ja lis
 ## Releaset
 
 [Viikko 5](https://github.com/joonaoko/ot-harjoitustyo/releases/tag/viikko5)
+
 [Viikko 6](https://github.com/joonaoko/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
