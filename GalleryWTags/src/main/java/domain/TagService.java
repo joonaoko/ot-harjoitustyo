@@ -5,6 +5,9 @@ import dao.TagDao;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * Class for accessing tags in the database via TagDao, and passing them to UI.
+ */
 public class TagService {
     private TagDao tagDao;
     

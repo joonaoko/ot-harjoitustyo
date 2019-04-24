@@ -7,7 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Class for finding, updating and deleting images and their tags in the database.
+ */
 public class ImgDao implements Dao<Img, Integer> {
     private Database db;
     private TagDao tagDao;
@@ -17,6 +19,13 @@ public class ImgDao implements Dao<Img, Integer> {
         tagDao = new TagDao(db);
     }
     
+    /**
+     * Adds named tag to Tag table if it doesn't exist yet, and connects it to 
+     * specified image via ImageTag.
+     * @param key ID of the image
+     * @param tagName Name of the tag being added
+     * @throws SQLException SQLException
+     */
     public void addImageTag(Integer key, String tagName) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT id FROM Tag WHERE name = ?");
@@ -49,6 +58,13 @@ public class ImgDao implements Dao<Img, Integer> {
         }
     }
     
+    /**
+     * Finds all tags that are connected to the specified image via ImageTag and 
+     * returns them as a list.
+     * @param key ID of the image
+     * @return List of the image's tags
+     * @throws SQLException SQLException
+     */
     public List<Tag> findImageTags(Integer key) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM ImageTag WHERE image_id = ?");
@@ -70,6 +86,12 @@ public class ImgDao implements Dao<Img, Integer> {
         return tags;
     }
     
+    /**
+     * Removes connection between specified image and tag from ImageTag.
+     * @param img_id ID of the image
+     * @param tag_id ID of the tag
+     * @throws SQLException SQLException
+     */
     public void removeImageTag(Integer img_id, Integer tag_id) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
@@ -83,6 +105,13 @@ public class ImgDao implements Dao<Img, Integer> {
         conn.close();
     }
     
+    /**
+     * Finds all images connected to specified tag via ImageTag and returns them 
+     * as a list.
+     * @param tag_id ID of the tag
+     * @return List of images with the specified tag
+     * @throws SQLException SQLException
+     */
     public List<Img> findTagImages(Integer tag_id) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
@@ -109,7 +138,13 @@ public class ImgDao implements Dao<Img, Integer> {
         
         return images;
     }
-
+    
+    /**
+     * Finds specified image from the Image table and returns it.
+     * @param key ID of the image
+     * @return The image
+     * @throws SQLException SQLException
+     */
     @Override
     public Img findOne(Integer key) throws SQLException {
         Connection conn = db.getConnection();
@@ -135,7 +170,12 @@ public class ImgDao implements Dao<Img, Integer> {
         
         return img;
     }
-
+    
+    /**
+     * Finds all images from the Image table and returns them as a list.
+     * @return List of all images in the database
+     * @throws SQLException SQLException
+     */
     @Override
     public List<Img> findAll() throws SQLException {
         Connection conn = db.getConnection();
@@ -158,7 +198,12 @@ public class ImgDao implements Dao<Img, Integer> {
         
         return images;
     }
-
+    
+    /**
+     * Saves a new image to the Image table.
+     * @param img The image being saved
+     * @throws SQLException SQLException
+     */
     @Override
     public void save(Img img) throws SQLException {
         Connection conn = db.getConnection();
@@ -174,7 +219,12 @@ public class ImgDao implements Dao<Img, Integer> {
         stmt.close();
         conn.close();
     }
-
+    
+    /**
+     * Removes specified image from the Image table.
+     * @param key ID of the image being removed
+     * @throws SQLException SQLException
+     */
     @Override
     public void delete(Integer key) throws SQLException {
         Connection conn = db.getConnection();

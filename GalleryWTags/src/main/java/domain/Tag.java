@@ -1,5 +1,8 @@
 package domain;
 
+/**
+ * Class for handling tags' info.
+ */
 public class Tag {
     private int id;
     private String name;

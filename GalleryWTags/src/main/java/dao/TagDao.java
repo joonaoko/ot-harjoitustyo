@@ -5,6 +5,9 @@ import domain.Tag;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Class for finding, updating and deleting tags in the database.
+ */
 public class TagDao implements Dao<Tag, Integer> {
     private Database db;
     
@@ -12,6 +15,12 @@ public class TagDao implements Dao<Tag, Integer> {
         this.db = db;
     }
     
+    /**
+     * Finds specified tag in the Tag table and returns it.
+     * @param key ID of the tag
+     * @return The tag
+     * @throws SQLException SQLException
+     */
     @Override
     public Tag findOne(Integer key) throws SQLException {
         
@@ -37,7 +46,12 @@ public class TagDao implements Dao<Tag, Integer> {
         
         return tag;
     }
-
+    
+    /**
+     * Finds all tags in the tag table.
+     * @return List of all tags in the database
+     * @throws SQLException SQLException
+     */
     @Override
     public List<Tag> findAll() throws SQLException {
         Connection conn = db.getConnection();
@@ -58,7 +72,12 @@ public class TagDao implements Dao<Tag, Integer> {
         
         return tags;
     }
-
+    
+    /**
+     * Saves a new tag to the database.
+     * @param tag The tag being saved
+     * @throws SQLException SQLException
+     */
     @Override
     public void save(Tag tag) throws SQLException {
         Connection conn = db.getConnection();
@@ -73,7 +92,12 @@ public class TagDao implements Dao<Tag, Integer> {
         stmt.close();
         conn.close();
     }
-
+    
+    /**
+     * Removes a tag from the database.
+     * @param key ID of the tag being removed
+     * @throws SQLException SQLException
+     */
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -2,6 +2,9 @@ package domain;
 
 import java.util.*;
 
+/**
+ * Class for handling images' info and tags.
+ */
 public class Img {
     private int id;
     private String title;
@@ -59,6 +62,10 @@ public class Img {
         return path;
     }
     
+    /**
+     * Converts tag list to string and returns it.
+     * @return Tag list as a string.
+     */
     public String getTagsString() {
         String tagsString = "";
         

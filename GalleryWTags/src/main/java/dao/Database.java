@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for initializing the database.
+ */
 public class Database {
     private String dbAddress;
     
@@ -11,10 +14,18 @@ public class Database {
         this.dbAddress = dbAddress;
     }
     
+    /**
+     * Connects to the database given in the address, and returns connection.
+     * @return Connection
+     * @throws SQLException SQLException
+     */
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(dbAddress);
     }
     
+    /**
+     * Creates tables if database hasn't been initialized yet.
+     */
     public void init() {
         List<String> sqliteInit = new ArrayList<>();
         sqliteInit.add("CREATE TABLE Image (id integer PRIMARY KEY, title varchar(240), path varchar(300))");
