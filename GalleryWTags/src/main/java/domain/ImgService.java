@@ -39,12 +39,12 @@ public class ImgService {
     /**
      * Finds all images that have the specified tag in the database
      * and returns them as a list.
-     * @param tag_id ID of the tag
+     * @param tagId ID of the tag
      * @return List of all images with the specified tag
      * @throws Exception Exception
      */
-    public List<Img> getTagImages(int tag_id) throws Exception {
-        return imgDao.findTagImages(tag_id);
+    public List<Img> getTagImages(int tagId) throws Exception {
+        return imgDao.findTagImages(tagId);
     }
     /*
     public void addImage(String title) {
@@ -105,11 +105,11 @@ public class ImgService {
     */
     /**
      * Removes an image's tag from the database.
-     * @param img_id ID of the image being modified
-     * @param tag_id ID of the tag being removed
+     * @param imgId ID of the image being modified
+     * @param tagId ID of the tag being removed
      * @throws SQLException SQLException
      */
-    public void removeImageTag(int img_id, int tag_id) throws SQLException {
-        imgDao.removeImageTag(img_id, tag_id);
+    public void removeImageTag(int imgId, int tagId) throws SQLException {
+        imgDao.removeImageTag(imgId, tagId);
     }
 }

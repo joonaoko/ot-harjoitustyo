@@ -43,13 +43,13 @@ public class ImgDao implements Dao<Img, Integer> {
             
             addImageTag(key, tagName);
         } else {
-            Integer tag_id = rs.getInt("id");
+            Integer tagId = rs.getInt("id");
 
             stmt = conn.prepareStatement("INSERT INTO ImageTag"
                     + "(image_id, tag_id)"
                     + "VALUES (?, ?)");
             stmt.setInt(1, key);
-            stmt.setInt(2, tag_id);
+            stmt.setInt(2, tagId);
             stmt.executeUpdate();
             
             rs.close();
@@ -72,10 +72,10 @@ public class ImgDao implements Dao<Img, Integer> {
         
         ResultSet rs = stmt.executeQuery();
         List<Tag> tags = new ArrayList<>();
-        while(rs.next()) {
-            Integer tag_id = rs.getInt("tag_id");
-            if (tagDao.findOne(tag_id) != null) {
-                tags.add(tagDao.findOne(tag_id));
+        while (rs.next()) {
+            Integer tagId = rs.getInt("tag_id");
+            if (tagDao.findOne(tagId) != null) {
+                tags.add(tagDao.findOne(tagId));
             }
         }
         
@@ -88,17 +88,17 @@ public class ImgDao implements Dao<Img, Integer> {
     
     /**
      * Removes connection between specified image and tag from ImageTag.
-     * @param img_id ID of the image
-     * @param tag_id ID of the tag
+     * @param imgId ID of the image
+     * @param tagId ID of the tag
      * @throws SQLException SQLException
      */
-    public void removeImageTag(Integer img_id, Integer tag_id) throws SQLException {
+    public void removeImageTag(Integer imgId, Integer tagId) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
                 "DELETE FROM ImageTag "
                 + "WHERE image_id =  ? AND tag_id = ?");
-        stmt.setInt(1, img_id);
-        stmt.setInt(2, tag_id);
+        stmt.setInt(1, imgId);
+        stmt.setInt(2, tagId);
         
         stmt.executeUpdate();
         stmt.close();
@@ -108,22 +108,22 @@ public class ImgDao implements Dao<Img, Integer> {
     /**
      * Finds all images connected to specified tag via ImageTag and returns them 
      * as a list.
-     * @param tag_id ID of the tag
+     * @param tagId ID of the tag
      * @return List of images with the specified tag
      * @throws SQLException SQLException
      */
-    public List<Img> findTagImages(Integer tag_id) throws SQLException {
+    public List<Img> findTagImages(Integer tagId) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement(
                 "SELECT * FROM Image "
                 + "INNER JOIN ImageTag ON Image.id = ImageTag.image_id "
                 + "INNER JOIN Tag ON ImageTag.tag_id = Tag.id "
                 + "WHERE Tag.id = ?");
-        stmt.setInt(1, tag_id);
+        stmt.setInt(1, tagId);
         
         ResultSet rs = stmt.executeQuery();
         List<Img> images = new ArrayList<>();
-        while(rs.next()) {
+        while (rs.next()) {
             Integer id = rs.getInt("id");
             String title = rs.getString("title");
             String path = rs.getString("path");
@@ -183,7 +183,7 @@ public class ImgDao implements Dao<Img, Integer> {
         
         ResultSet rs = stmt.executeQuery();
         List<Img> images = new ArrayList<>();
-        while(rs.next()) {
+        while (rs.next()) {
             Integer id = rs.getInt("id");
             String title = rs.getString("title");
             String path = rs.getString("path");

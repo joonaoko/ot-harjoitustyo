@@ -53,7 +53,7 @@ public class Database {
                 stmt.executeUpdate(s);
             }
         } catch (Throwable t) {
-            System.out.println("Error: "+t.getMessage());
+            System.out.println("Error: " + t.getMessage());
         }
     }
 }

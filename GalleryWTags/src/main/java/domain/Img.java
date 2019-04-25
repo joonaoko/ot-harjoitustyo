@@ -36,7 +36,7 @@ public class Img {
     }
     */
     public Img(int id, String title, String path, List tags) {
-        this. id = id;
+        this.id = id;
         this.title = title;
         this.path = path;
         this.tags = tags;

@@ -59,7 +59,7 @@ public class TagDao implements Dao<Tag, Integer> {
         
         ResultSet rs = stmt.executeQuery();
         List<Tag> tags = new ArrayList<>();
-        while(rs.next()) {
+        while (rs.next()) {
             Integer id = rs.getInt("id");
             String name = rs.getString("name");
             
