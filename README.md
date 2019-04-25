@@ -34,3 +34,5 @@ JavaDoc voidaan avata selaimessa avaamalla `target/site/apidocs/index.html`
 
 ### Checkstyle
 Checkstyle-tarkistus voidaan suorittaa komennolla `mvn jxr:jxr checkstyle:checkstyle`
+
+Tuloksia voidaan katsoa selaimella avaamalla `target/site/checkstyle.html`
