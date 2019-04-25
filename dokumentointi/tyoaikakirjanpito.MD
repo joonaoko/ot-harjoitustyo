@@ -23,4 +23,7 @@
 |21.4|2h  |Kuvan tagien poistaminen, yksittäisen tagin omaavien kuvien näyttäminen|
 |22.4|1h  |Turhaksi jääneiden metodien jne. poistoa                     |
 |22.4|1h  |Poistettu turhaksi jääneitä metodeja ja testejä, päivitetty tietokanta toimimaan myös .jar:n kautta suorittaessa|
-|**Yht**:|**33h** |                                                     |
+|23.4|2h  |Tehty pikkukorjauksia, luotu testejä, aloitettu JavaDoc      |
+|24.4|1h  |Jatkettu JavaDoc-dokumentointia, työstetty arkkitehtuurikuvausta|
+|25.4|2h  |Arkkitehtuurikuvaus ja käyttöohje                            |
+|**Yht**:|**38h** |                                                     |
