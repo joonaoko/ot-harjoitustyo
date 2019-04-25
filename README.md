@@ -25,5 +25,8 @@ Testikattavuusraportti voidaan generoida komennolla `mvn jacoco:report`
 ### Suoritettava .jar
 Komennolla `mvn package` voidaan generoida suoritettava `GalleryWTags-1.0-SNAPSHOT.jar`-niminen tiedosto target-hakemistoon
 
+### JavaDoc
+JavaDoc voidaan generoida komennolla `mvn javadoc:javadoc`
+
 ### Checkstyle
 Checkstyle-tarkistus voidaan suorittaa komennolla `mvn jxr:jxr checkstyle:checkstyle`
