@@ -1,6 +1,33 @@
 # Käyttöohje
-"All Images"-painike näyttää kaikki tallennetut kuvat ja niiden otsikot. Kunkin kuvan alla on "Open"-painike, jota painamalla voi avata kuvan, ja tämän jälkeen poistaa sen "Remove Image" painikkeella, tai katsella ja muokata sen tageja "Edit Tags" painiketta painamalla.
+## All Images
+![01](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje01.png)
 
-"Tags"-painike näyttää kaikki tagit. Kunkin tagin vieressä on "Open"-painike, jota painamalla näytetään kaikki kuvat joilla on ko. tagi.
+"All Images"-painike näyttää kaikki tallennetut kuvat ja niiden otsikot. 
 
-"Add Image"-painikkeen kautta voidaan lisätä uusi kuva. Kuvan otsikko kirjoitetaan "Title"-kohtaan ja "Choose Image..."-painikkeen kautta voidaan valita kuva omista tiedostoista.
+![02](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje02.png)
+
+Kunkin kuvan alla on "Open"-painike, jota painamalla voi avata kuvan. 
+
+![03](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje03.png)
+
+Tämän jälkeen kuvan voi poistaa "Remove Image" painikkeella, tai muokata sen tageja "Edit Tags" painiketta painamalla.
+
+![04](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje04.png)
+
+Tagin nimi kirjoitetaan tekstikenttään ja "Add New Tag"-painike lisää sen kuvalle.
+
+## Tags
+"Tags"-painike näyttää kaikki tagit. 
+
+![05](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje05.png)
+
+Kunkin tagin vieressä on "Open"-painike, jota painamalla näytetään kaikki kuvat joilla on ko. tagi.
+
+## Add Image
+
+"Add Image"-painikkeen kautta voidaan lisätä uusi kuva. 
+
+
+![06](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje06.png)
+
+Kuvan otsikko kirjoitetaan "Title"-kohtaan ja "Choose Image..."-painikkeen kautta voidaan valita kuva omista tiedostoista. Tämän jälkeen "Add Image"-painike lisää sen galleriaan.
