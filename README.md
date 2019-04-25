@@ -22,11 +22,15 @@ Testit voidaan suorittaa komennolla `mvn test`
 
 Testikattavuusraportti voidaan generoida komennolla `mvn jacoco:report`
 
+Raportti voidaan avata selaimessa avaamalla `target/site/jacoco/index.html`
+
 ### Suoritettava .jar
 Komennolla `mvn package` voidaan generoida suoritettava `GalleryWTags-1.0-SNAPSHOT.jar`-niminen tiedosto target-hakemistoon
 
 ### JavaDoc
 JavaDoc voidaan generoida komennolla `mvn javadoc:javadoc`
+
+JavaDoc voidaan avata selaimessa avaamalla `target/site/apidocs/index.html`
 
 ### Checkstyle
 Checkstyle-tarkistus voidaan suorittaa komennolla `mvn jxr:jxr checkstyle:checkstyle`
