@@ -18,7 +18,7 @@ Luokka `ImgService`
 
 - välittää ne UI:lle `Image`- ja `Tag`-luokkien olioina.
 
-`TagService` hakee `TagDao`-luokan avulla kaikki tagit tietokannasta.
+`TagService` hakee `TagDao`-luokan avulla kaikki tagit tietokannasta ja välittää ne UI:lle `Tag`-luokan olioina.
 
 ### Luokka-/pakkauskaavio
 
