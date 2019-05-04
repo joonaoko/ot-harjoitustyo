@@ -4,6 +4,7 @@ import dao.Database;
 import dao.TagDao;
 import domain.Tag;
 import domain.TagService;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -12,14 +13,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
 
 public class TagServiceTest {
-    
     TagService tagService;
+    
+    @Rule
+    public TemporaryFolder tempFolder = new TemporaryFolder();
     
     @Before
     public void setUp() throws Exception {
-        Database db = new Database("jdbc:sqlite::resource:testdatabase.db");
+        File testdbfile = tempFolder.newFile("testdatabase.db");
+        
+        Database db = new Database("jdbc:sqlite:"+testdbfile.getPath());
+        db.init();
         tagService = new TagService(db);
         
         TagDao tagDao = new TagDao(db);

@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Img;
+import java.io.File;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -8,22 +9,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
 
 public class ImgDaoTest {
-    private Database db;
     private ImgDao imgDao;
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
+    @Rule
+    public TemporaryFolder tempFolder = new TemporaryFolder();
     
     @Before
     public void setUp() throws Exception {
-        Database db = new Database("jdbc:sqlite::resource:testdatabase.db");
+        File testdbfile = tempFolder.newFile("testdatabase.db");
+        
+        Database db = new Database("jdbc:sqlite:"+testdbfile.getPath());
+        db.init();
         imgDao = new ImgDao(db);
         
         imgDao.save(new Img("Testimg1", "Testpath1"));
