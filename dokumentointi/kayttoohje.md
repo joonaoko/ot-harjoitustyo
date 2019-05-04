@@ -1,5 +1,11 @@
 # Käyttöohje
-## All Images
+
+## Asennus ja käynnistys
+Lataa gallerywtags.jar viimeisimmästä releasesta
+
+Ohjelma voidaan käynnistää komennolla `java -jar -gallerywtags.jar`
+
+## Kaikkien kuvien katselu
 ![01](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje01.png)
 
 "All Images"-painike näyttää kaikki tallennetut kuvat ja niiden otsikot. 
@@ -16,14 +22,14 @@ Tämän jälkeen kuvan voi poistaa "Remove Image" painikkeella, tai muokata sen 
 
 Tagin nimi kirjoitetaan tekstikenttään ja "Add New Tag"-painike lisää sen kuvalle.
 
-## Tags
+## Tagien katselu
 "Tags"-painike näyttää kaikki tagit. 
 
 ![05](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje05.png)
 
 Kunkin tagin vieressä on "Open"-painike, jota painamalla näytetään kaikki kuvat joilla on ko. tagi.
 
-## Add Image
+## Uuden kuvan lisäys
 
 "Add Image"-painikkeen kautta voidaan lisätä uusi kuva. 
 
