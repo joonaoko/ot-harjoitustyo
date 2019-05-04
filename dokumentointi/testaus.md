@@ -10,7 +10,7 @@ Domain-pakkauksen, eli sovelluuslogiikkaa toteuttavien luokkien testauksen toteu
 Dao-pakkauksen, eli tietokannan käyttöä toteuttavien luokkien testauksen toteuttaa ImgDaoTest ja TagDaoTest, jotka jälleen testaavat nimiensä mukaisia luokkia hyödyntäen jälleen väliaikaista testitietokantaa.
 
 ### Testauskattavuus
-Käyttöliittymää huomioimatta testien rivi- ja haarautumakattavuus on 100%.
+Käyttöliittymää huomioimatta testien rivikattavuus on 99% ja haarautumakattavuus 95%.
 
 ![Kattavuus](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/testikattavuus.png)
 
