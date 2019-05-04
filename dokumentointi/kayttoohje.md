@@ -1,7 +1,7 @@
 # Käyttöohje
 
 ## Asennus ja käynnistys
-Lataa gallerywtags.jar viimeisimmästä releasesta
+Lataa [gallerywtags.jar viimeisimmästä releasesta](https://github.com/joonaoko/ot-harjoitustyo/releases/tag/loppupalautus).
 
 Ohjelma voidaan käynnistää komennolla `java -jar -gallerywtags.jar`
 
