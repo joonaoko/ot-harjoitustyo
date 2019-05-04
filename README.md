@@ -6,9 +6,11 @@ Sovelluksella voi selata valokuvia niille asetettujen tagien perusteella, ja lis
 
 [Vaatimusmäärittely](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/vaatimusmaarittely.MD)
 
-[Työaikakirjanpito](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.MD)
-
 [Arkkitehtuuri](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
+
+[Testausdokumentti](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/testaus.md)
+
+[Työaikakirjanpito](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.MD)
 
 ## Releaset
 [Viikko 5](https://github.com/joonaoko/ot-harjoitustyo/releases/tag/viikko5)
