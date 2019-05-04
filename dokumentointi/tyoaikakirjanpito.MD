@@ -26,4 +26,8 @@
 |23.4|2h  |Tehty pikkukorjauksia, luotu testejä, aloitettu JavaDoc      |
 |24.4|1h  |Jatkettu JavaDoc-dokumentointia, työstetty arkkitehtuurikuvausta|
 |25.4|2h  |Arkkitehtuurikuvaus ja käyttöohje                            |
-|**Yht**:|**38h** |                                                     |
+|2.5 |1h  |Muutamaa metodia lyhennetty Checkstyle-virheiden vuoksi, poistettu poiskommentoitu koodi kokonaan, pikkukorjauksia|
+|2.5 |1h  |Tehty testitietokanta testejä varten, korjattu ja lisätty testejä|
+|4.5 |1.5h|Lisää testejä, tehty testitietokannasta väliaikainen         |
+|4.5 |1.5h|Manuaalisia testejä, testidokumentti, päivitetty käyttöohjetta, tehty loppupalautus-release|
+|**Yht**:|**43h** |                                                     |
