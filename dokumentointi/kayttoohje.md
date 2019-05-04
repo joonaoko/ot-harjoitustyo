@@ -5,6 +5,14 @@ Lataa gallerywtags.jar viimeisimmästä releasesta
 
 Ohjelma voidaan käynnistää komennolla `java -jar -gallerywtags.jar`
 
+## Uuden kuvan lisäys
+
+"Add Image"-painikkeen kautta voidaan lisätä uusi kuva. 
+
+![06](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje06.png)
+
+Kuvan otsikko kirjoitetaan "Title"-kohtaan ja "Choose Image..."-painikkeen kautta voidaan valita kuva omista tiedostoista. Tämän jälkeen "Add Image"-painike lisää sen galleriaan.
+
 ## Kaikkien kuvien katselu
 ![01](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje01.png)
 
@@ -28,12 +36,3 @@ Tagin nimi kirjoitetaan tekstikenttään ja "Add New Tag"-painike lisää sen ku
 ![05](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje05.png)
 
 Kunkin tagin vieressä on "Open"-painike, jota painamalla näytetään kaikki kuvat joilla on ko. tagi.
-
-## Uuden kuvan lisäys
-
-"Add Image"-painikkeen kautta voidaan lisätä uusi kuva. 
-
-
-![06](https://github.com/joonaoko/ot-harjoitustyo/blob/master/dokumentointi/kuvat/kayttoohje06.png)
-
-Kuvan otsikko kirjoitetaan "Title"-kohtaan ja "Choose Image..."-painikkeen kautta voidaan valita kuva omista tiedostoista. Tämän jälkeen "Add Image"-painike lisää sen galleriaan.
