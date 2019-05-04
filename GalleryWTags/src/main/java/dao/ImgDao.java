@@ -33,29 +33,21 @@ public class ImgDao implements Dao<Img, Integer> {
         
         ResultSet rs = stmt.executeQuery();
         boolean hasOne = rs.next();
-        /* Lisää tagin Tag-tauluun, jos sitä ei löydy */
+        // Lisää tagin Tag-tauluun, jos sitä ei löydy
         if (!hasOne) {
             tagDao.save(new Tag(tagName));
-            
-            rs.close();
-            stmt.close();
-            conn.close();
-            
             addImageTag(key, tagName);
         } else {
             Integer tagId = rs.getInt("id");
 
-            stmt = conn.prepareStatement("INSERT INTO ImageTag"
-                    + "(image_id, tag_id)"
-                    + "VALUES (?, ?)");
+            stmt = conn.prepareStatement("INSERT INTO ImageTag (image_id, tag_id) VALUES (?, ?)");
             stmt.setInt(1, key);
             stmt.setInt(2, tagId);
             stmt.executeUpdate();
-            
-            rs.close();
-            stmt.close();
-            conn.close();
         }
+        rs.close();
+        stmt.close();
+        conn.close();
     }
     
     /**
@@ -114,11 +106,9 @@ public class ImgDao implements Dao<Img, Integer> {
      */
     public List<Img> findTagImages(Integer tagId) throws SQLException {
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM Image "
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Image "
                 + "INNER JOIN ImageTag ON Image.id = ImageTag.image_id "
-                + "INNER JOIN Tag ON ImageTag.tag_id = Tag.id "
-                + "WHERE Tag.id = ?");
+                + "INNER JOIN Tag ON ImageTag.tag_id = Tag.id WHERE Tag.id = ?");
         stmt.setInt(1, tagId);
         
         ResultSet rs = stmt.executeQuery();

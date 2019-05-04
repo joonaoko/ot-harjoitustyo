@@ -1,5 +1,6 @@
 package ui;
 
+import dao.Database;
 import domain.Img;
 import domain.ImgService;
 import domain.Tag;
@@ -36,51 +37,18 @@ public class UI extends Application {
 
     @Override
     public void start(Stage window) throws Exception {
-        imgService = new ImgService();
-        tagService = new TagService();
+        Database db = new Database("jdbc:sqlite::resource:database.db");
+        db.init();
+        imgService = new ImgService(db);
+        tagService = new TagService(db);
         
         window.setTitle("GalleryWTags");
         
         BorderPane layout = new BorderPane();
-        Scene view = new Scene(layout, 1280, 720);
+        Scene view = new Scene(layout, 500, 300);
         
         /* Top UI */
-        topUI = new HBox();
-        
-        Button topUIImagesButton = new Button("All Images");
-        topUIImagesButton.setOnAction((event) -> {
-            try {
-                window.setScene(createGalleryView(window));
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            } 
-            window.show();
-        });
-        topUI.getChildren().add(topUIImagesButton);
-        
-        Button tagsButton = new Button("Tags");
-        tagsButton.setOnAction((event) -> {
-            try {
-                window.setScene(createTagsView(window));
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-           window.show();
-        });
-        topUI.getChildren().add(tagsButton);
-        
-        Button uploadButton = new Button("Add Image");
-        uploadButton.setOnAction((event) -> {
-            try {
-                window.setScene(createUploadView(window));
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-           window.show();
-        });
-        topUI.getChildren().add(uploadButton);
-        
-        topUI.setSpacing(5);
+        topUI = createTopUI(window);
         layout.setTop(topUI);
         
         window.setScene(view);
@@ -153,11 +121,6 @@ public class UI extends Application {
         
         /* Individual thumbnail boxes */
         List<Img> allImages = imgService.getTagImages(tag_id);
-        
-        if (!allImages.isEmpty()) {
-            // ********* Kuvattomien tagien käsittely ei toimi vielä ***********
-            galleryLayout.setCenter(new Label("No images with this tag"));
-        }
         
         int row = 0;
         int col = 0;
@@ -238,7 +201,8 @@ public class UI extends Application {
                 window.setScene(createEditImgTagsView(window, img));
                 window.show();
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
         });
         imgVBox.getChildren().add(editTagsButton);
@@ -250,7 +214,8 @@ public class UI extends Application {
                 imgService.removeImage(img.getId());
                 window.setScene(createGalleryView(window));
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
         });
         imgVBox.getChildren().add(removeImgButton);
@@ -279,7 +244,8 @@ public class UI extends Application {
                     imgService.removeImageTag(img.getId(), tag.getId());
                     window.setScene(createEditImgTagsView(window, img));
                 } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
+                    window.setScene(createErrorView(window, ex.getMessage()));
+                    window.show();
                 }
                 window.show();
             });
@@ -299,7 +265,8 @@ public class UI extends Application {
                 window.setScene(createEditImgTagsView(window, img));
                 window.show();
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
         });
         
@@ -359,7 +326,8 @@ public class UI extends Application {
             try {
                 imgService.addImage(titleField.getText(), file.getAbsolutePath());
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
         });
         uploadForm.add(selectImgButton, 0, 2);
@@ -369,7 +337,8 @@ public class UI extends Application {
             try {
                 window.setScene(createGalleryView(window));
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
            window.show();
         });
@@ -385,6 +354,15 @@ public class UI extends Application {
         return uploadScene;
     }
     
+    public Scene createErrorView(Stage window, String message) {
+        BorderPane errorLayout = new BorderPane();
+        errorLayout.setTop(topUI);
+        errorLayout.setCenter(new Label(message));
+        
+        Scene errorScene = new Scene(errorLayout);
+        return errorScene;
+    }
+    
     public HBox createTopUI(Stage window) {
         HBox topUIHbox = new HBox();
         
@@ -393,7 +371,8 @@ public class UI extends Application {
             try {
                 window.setScene(createGalleryView(window));
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
             window.show();
             });
@@ -404,7 +383,8 @@ public class UI extends Application {
             try {
                 window.setScene(createTagsView(window));
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
            window.show();
         });
@@ -415,7 +395,8 @@ public class UI extends Application {
             try {
                 window.setScene(createUploadView(window));
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                window.setScene(createErrorView(window, ex.getMessage()));
+                window.show();
             }
            window.show();
         });
