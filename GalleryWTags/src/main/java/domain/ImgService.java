@@ -10,30 +10,17 @@ import java.util.*;
  * passing them to UI.
  */
 public class ImgService {
-    // private ArrayList<Img> images;
     private ImgDao imgDao;
     
-    public ImgService() throws Exception {  
-        Database db = new Database("jdbc:sqlite::resource:database.db");
-        db.init();
+    public ImgService(Database db) throws Exception {
         imgDao = new ImgDao(db);
-        
-        /*
-        images = new ArrayList<>();
-        images.add(new Img("Test", "src/main/resources/images/testimg.jpg"));
-        images.add(new Img("Test2"));
-        images.get(0).addTag(new Tag("Test Tag"));
-        images.get(0).addTag(new Tag("Test Tag 2"));
-        */
     }
     
     public Img getImage(int id) throws Exception {
-        // return images.get(id);
         return imgDao.findOne(id);
     }
     
     public List<Img> getImages() throws Exception {
-        // return images;
         return imgDao.findAll();
     }
     /**
@@ -46,11 +33,7 @@ public class ImgService {
     public List<Img> getTagImages(int tagId) throws Exception {
         return imgDao.findTagImages(tagId);
     }
-    /*
-    public void addImage(String title) {
-        images.add(new Img(title));
-    }
-    */
+    
     /**
      * Adds a new image to the database.
      * @param title Title of the image being added
@@ -90,19 +73,7 @@ public class ImgService {
     public List<Tag> getImageTags(int id) throws Exception {
         return imgDao.findImageTags(id);
     }
-    /*
-    public String getImageTagsString(int id) throws Exception {
-        List<Tag> tags = imgDao.findImageTags(id);
-        
-        String tagsString = "";
-        
-        for (Tag t : tags) {
-            tagsString += t + ", ";
-        }
-        
-        return tagsString;
-    }
-    */
+    
     /**
      * Removes an image's tag from the database.
      * @param imgId ID of the image being modified

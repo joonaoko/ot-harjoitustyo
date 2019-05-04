@@ -11,13 +11,15 @@ import java.util.*;
 public class TagService {
     private TagDao tagDao;
     
-    public TagService() throws Exception {
-        Database db = new Database("jdbc:sqlite::resource:database.db");
-        db.init();
+    public TagService(Database db) throws Exception {
         tagDao = new TagDao(db);
     }
     
     public List<Tag> getAllTags() throws Exception {
         return tagDao.findAll();
+    }
+    
+    public void removeTag(Integer id) throws Exception {
+        tagDao.delete(id);
     }
 }
