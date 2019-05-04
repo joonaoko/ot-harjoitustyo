@@ -1,3 +1,5 @@
+package domain;
+
 
 import domain.Img;
 import domain.Tag;
